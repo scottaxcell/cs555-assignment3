@@ -55,6 +55,7 @@ hadoop_uservar_su yarn nodemanager "${HADOOP_YARN_HOME}/bin/yarn" \
 
 # stop resourceManager
 HARM=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -confKey yarn.resourcemanager.ha.enabled 2>&-)
+HARM=$(echo $HARM | sed 's/.*applicable//' | xargs)
 if [[ ${HARM} = "false" ]]; then
   echo "Stopping resourcemanager"
   hadoop_uservar_su yarn resourcemanager "${HADOOP_YARN_HOME}/bin/yarn" \
@@ -80,6 +81,7 @@ fi
 
 # stop proxyserver
 PROXYSERVER=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -confKey  yarn.web-proxy.address 2>&- | cut -f1 -d:)
+PROXYSERVER=
 if [[ -n ${PROXYSERVER} ]]; then
   echo "Stopping proxy server [${PROXYSERVER}]"
   hadoop_uservar_su yarn proxyserver "${HADOOP_YARN_HOME}/bin/yarn" \

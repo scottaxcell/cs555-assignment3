@@ -49,6 +49,7 @@ HADOOP_JUMBO_RETCOUNTER=0
 
 # start resourceManager
 HARM=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -confKey yarn.resourcemanager.ha.enabled 2>&-)
+HARM=$(echo $HARM | sed 's/.*applicable//' | xargs)
 if [[ ${HARM} = "false" ]]; then
   echo "Starting resourcemanager"
   hadoop_uservar_su yarn resourcemanager "${HADOOP_YARN_HOME}/bin/yarn" \
@@ -86,6 +87,7 @@ hadoop_uservar_su yarn nodemanager "${HADOOP_YARN_HOME}/bin/yarn" \
 
 # start proxyserver
 PROXYSERVER=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -confKey  yarn.web-proxy.address 2>&- | cut -f1 -d:)
+PROXYSERVER=
 if [[ -n ${PROXYSERVER} ]]; then
  hadoop_uservar_su yarn proxyserver "${HADOOP_YARN_HOME}/bin/yarn" \
       --config "${HADOOP_CONF_DIR}" \

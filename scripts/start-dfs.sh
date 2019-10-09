@@ -85,6 +85,7 @@ nameStartOpt="$nameStartOpt $*"
 # namenodes
 
 NAMENODES=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -namenodes 2>/dev/null)
+NAMENODES=$(echo $NAMENODES | sed 's/.*applicable//' | xargs)
 
 if [[ -z "${NAMENODES}" ]]; then
   NAMENODES=$(hostname)
@@ -115,6 +116,7 @@ hadoop_uservar_su hdfs datanode "${HADOOP_HDFS_HOME}/bin/hdfs" \
 # secondary namenodes (if any)
 
 SECONDARY_NAMENODES=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -secondarynamenodes 2>/dev/null)
+SECONDARY_NAMENODES=$(echo $SECONDARY_NAMENODES | sed 's/.*applicable//' | xargs)
 
 if [[ -n "${SECONDARY_NAMENODES}" ]]; then
 
@@ -145,6 +147,7 @@ fi
 # quorumjournal nodes (if any)
 
 JOURNAL_NODES=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -journalNodes 2>&-)
+JOURNAL_NODES=$(echo $JOURNAL_NODES | sed 's/.*applicable//' | xargs)
 
 if [[ "${#JOURNAL_NODES}" != 0 ]]; then
   echo "Starting journal nodes [${JOURNAL_NODES}]"
@@ -161,6 +164,8 @@ fi
 #---------------------------------------------------------
 # ZK Failover controllers, if auto-HA is enabled
 AUTOHA_ENABLED=$("${HADOOP_HDFS_HOME}/bin/hdfs" getconf -confKey dfs.ha.automatic-failover.enabled | tr '[:upper:]' '[:lower:]')
+AUTOHA_ENABLED=$(echo $AUTOHA_ENABLED | sed 's/.*applicable//' | xargs)
+
 if [[ "${AUTOHA_ENABLED}" = "true" ]]; then
   echo "Starting ZK Failover Controllers on NN hosts [${NAMENODES}]"
 
