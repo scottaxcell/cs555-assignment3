@@ -1,4 +1,4 @@
-package cs455.hadoop.wordcount;
+package cs555.hadoop;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
