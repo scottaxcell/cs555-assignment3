@@ -19,7 +19,7 @@
 <configuration>
 <property>
   <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>augusta:56781</value>
+    <value>albany.cs.colostate.edu:56781</value>
     <description>host is the hostname of the resource manager and 
     port is the port on which the NodeManagers contact the Resource Manager.
     </description>
@@ -27,7 +27,7 @@
 
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>augusta:56782</value>
+    <value>albany.cs.colostate.edu:56782</value>
     <description>host is the hostname of the resourcemanager and port is the port
     on which the Applications in the cluster talk to the Resource Manager.
     </description>
@@ -41,7 +41,7 @@
 
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>augusta:56783</value>
+    <value>albany.cs.colostate.edu:56783</value>
     <description>the host is the hostname of the ResourceManager and the port is the port on
     which the clients can talk to the Resource Manager. </description>
   </property>

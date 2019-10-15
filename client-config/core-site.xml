@@ -22,6 +22,6 @@
     </property>
     <property>
         <name>fs.viewfs.mounttable.default.link./data</name>
-        <value>hdfs://augusta:56780/data</value>
+        <value>hdfs://albany.cs.colostate.edu:56780/data</value>
     </property>
 </configuration>
