@@ -1,6 +1,6 @@
 <configuration>
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://tokyo:53500</value>
+    <value>hdfs://frankfort:53500</value>
   </property>
 </configuration>

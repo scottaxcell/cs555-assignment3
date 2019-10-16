@@ -9,5 +9,5 @@ export YARN_CONF_DIR=${HADOOP_CONF_DIR}
 export HADOOP_LOG_DIR=/s/${HOSTNAME}/a/tmp/${USER}/hadoop-logs
 export YARN_LOG_DIR=/s/${HOSTNAME}/a/tmp/${USER}/yarn-logs
 
-#export HADOOP_OPTS="-Dhadoop.tmp.dir=/s/${HOSTNAME}/a/nobackup/cs555/${USER}"
-export HADOOP_OPTS="-Dhadoop.tmp.dir=/s/${HOSTNAME}/a/tmp/cs555/${USER}"
+export HADOOP_OPTS="-Dhadoop.tmp.dir=/s/${HOSTNAME}/a/nobackup/cs555/${USER}"
+#export HADOOP_OPTS="-Dhadoop.tmp.dir=/s/${HOSTNAME}/a/tmp/cs555/${USER}"
