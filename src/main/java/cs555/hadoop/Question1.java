@@ -15,23 +15,17 @@ public class Question1 {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] split = value.toString().split(",");
-            cs555.pastry.util.Utils.debug("split.length: " + split.length);
             if (split.length != 24)
                 return;
-            cs555.pastry.util.Utils.debug(value);
 
             Text reduceKey = new Text(
                 split[MainIndex.DEP_TIME] + "," +
                     split[MainIndex.DAY_OF_WEEK] + "," +
                     split[MainIndex.MONTH]);
 
-            cs555.pastry.util.Utils.debug("reduceKey: " + reduceKey);
-
             LongWritable delay = new LongWritable(
                 parseDelay(split[MainIndex.ARR_DELAY]) +
                     parseDelay(split[MainIndex.DEP_DELAY]));
-
-            cs555.pastry.util.Utils.debug("delay: " + delay);
 
             context.write(reduceKey, delay);
         }
@@ -50,7 +44,7 @@ public class Question1 {
         }
     }
 
-    static long parseDelay(String string) {
+    private static long parseDelay(String string) {
         try {
             float delay = Float.parseFloat(string);
             return delay < 0 ? 0 : (long) delay;
