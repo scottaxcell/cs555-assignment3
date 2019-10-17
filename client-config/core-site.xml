@@ -14,11 +14,11 @@
     </property>
     <property>
         <name>fs.viewfs.mounttable.default.link./home</name>
-        <value>hdfs://tokyo:53500</value>
+        <value>hdfs://frankfort:53500</value>
     </property>
     <property>
         <name>fs.viewfs.mounttable.default.link./tmp</name>
-        <value>hdfs://tokyo:53500/tmp</value>
+        <value>hdfs://frankfort:53500/tmp</value>
     </property>
     <property>
         <name>fs.viewfs.mounttable.default.link./data</name>

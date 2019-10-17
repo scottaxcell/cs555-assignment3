@@ -1,4 +1,4 @@
-package cs555.hadoop;
+package cs555.hadoop.template;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
