@@ -24,6 +24,14 @@ $HADOOP_HOME/bin/hdfs dfs -cat /cs455/wordcount-out/part-r-00000 > part-r-00000
 
 ```
 export HADOOP_CONF_DIR=${HOME}/cs555-assignment3/client-config
-e.g.
-$HADOOP_HOME/bin/hadoop jar msd-analysis.jar cs455.hadoop.msd.AnalysisJob /data/analysis /home/analysis/output
+```
+
+# Build
+```
+$ gradle build
+```
+
+# Run
+```
+$ $HADOOP_HOME/bin/hdfs dfs -rm -r /home/question1 && $HADOOP_HOME/bin/hadoop jar build/libs/cs555-assignment3.jar cs555.hadoop.JobRunner
 ```
