@@ -90,45 +90,43 @@ public class JobRunner {
 
     private void runQuestionThree() {
         try {
-            Job job = Job.getInstance(configuration, "Question 3 Part 1");
+            Job busiestAirportsJob = Job.getInstance(configuration, "Question 3 Part 1");
 
-            job.setJarByClass(QuestionThree.class);
+            busiestAirportsJob.setJarByClass(QuestionThree.class);
 
-            job.setMapperClass(QuestionThree.MainMap.class);
-            job.setMapperClass(QuestionThree.AirportsMap.class);
-            job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(Text.class);
+            busiestAirportsJob.setMapperClass(QuestionThree.MainMapper.class);
+            busiestAirportsJob.setMapperClass(QuestionThree.AirportsMapper.class);
+            busiestAirportsJob.setMapOutputKeyClass(Text.class);
+            busiestAirportsJob.setMapOutputValueClass(Text.class);
 
-            job.setReducerClass(QuestionThree.Reducer.class);
-            job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(Text.class);
+            busiestAirportsJob.setReducerClass(QuestionThree.Reducer.class);
+            busiestAirportsJob.setOutputKeyClass(Text.class);
+            busiestAirportsJob.setOutputValueClass(Text.class);
 
-            MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionThree.MainMap.class);
-            MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMap.class);
-            FileOutputFormat.setOutputPath(job, new Path("/home/question3p1"));
+            MultipleInputs.addInputPath(busiestAirportsJob, DATA_MAIN_PATH, TextInputFormat.class, QuestionThree.MainMapper.class);
+            MultipleInputs.addInputPath(busiestAirportsJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMapper.class);
+            FileOutputFormat.setOutputPath(busiestAirportsJob, new Path("/home/question3p1"));
 
-            job.waitForCompletion(false);
+            busiestAirportsJob.waitForCompletion(false);
 
             // ----------
-//
-//            Job mapIataToAirportJob = Job.getInstance(configuration, "Question 3 Part 2");
-//
-//            mapIataToAirportJob.setJarByClass(QuestionThree.class);
-//
-//            mapIataToAirportJob.setMapperClass(QuestionThree.IntermediateMap.class);
-//            mapIataToAirportJob.setMapperClass(QuestionThree.AirportsMap.class);
-//            mapIataToAirportJob.setMapOutputKeyClass(Text.class);
-//            mapIataToAirportJob.setMapOutputValueClass(Text.class);
-//
-//            mapIataToAirportJob.setReducerClass(QuestionThree.FinalReduce.class);
-//            mapIataToAirportJob.setOutputKeyClass(Text.class);
-//            mapIataToAirportJob.setOutputValueClass(Text.class);
-//
-//            MultipleInputs.addInputPath(mapIataToAirportJob, new Path("/home/question3part1/" + PART_R_00000), TextInputFormat.class, QuestionThree.IntermediateMap.class);
-//            MultipleInputs.addInputPath(mapIataToAirportJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMap.class);
-//            FileOutputFormat.setOutputPath(mapIataToAirportJob, new Path("/home/question3part2"));
-//
-//            mapIataToAirportJob.waitForCompletion(false);
+
+            Job changesPerYearJob = Job.getInstance(configuration, "Question 3 Part 2");
+
+            changesPerYearJob.setJarByClass(QuestionThree.class);
+
+            changesPerYearJob.setMapperClass(QuestionThree.YearMapper.class);
+            changesPerYearJob.setMapOutputKeyClass(IntWritable.class);
+            changesPerYearJob.setMapOutputValueClass(IntWritable.class);
+
+            changesPerYearJob.setReducerClass(QuestionThree.YearReducer.class);
+            changesPerYearJob.setOutputKeyClass(Text.class);
+            changesPerYearJob.setOutputValueClass(Text.class);
+
+            FileInputFormat.addInputPath(changesPerYearJob, DATA_MAIN_PATH);
+            FileOutputFormat.setOutputPath(changesPerYearJob, new Path("/home/question3p2"));
+
+            changesPerYearJob.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -1,11 +1,8 @@
 package cs555.hadoop;
 
-import cs555.hadoop.Constants;
-import cs555.hadoop.MainIndex;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 import java.util.HashMap;
