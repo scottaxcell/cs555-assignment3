@@ -23,7 +23,8 @@ public class JobRunner {
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
 //        jobRunner.runQuestionOne();
-        jobRunner.runQuestionThree();
+//        jobRunner.runQuestionThree();
+        jobRunner.runQuestionFour();
     }
 
     private void runQuestionOne() {
@@ -127,6 +128,33 @@ public class JobRunner {
             FileOutputFormat.setOutputPath(changesPerYearJob, new Path("/home/question3p2"));
 
             changesPerYearJob.waitForCompletion(false);
+        }
+        catch (IOException | InterruptedException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void runQuestionFour() {
+        try {
+            Job job = Job.getInstance(configuration, "Question 4");
+
+            job.setJarByClass(QuestionFour.class);
+
+            job.setMapperClass(QuestionFour.MainMapper.class);
+            job.setMapperClass(QuestionFour.AirportsMapper.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(Text.class);
+
+            job.setReducerClass(QuestionFour.Reducer.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(Text.class);
+
+            MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionFour.MainMapper.class);
+            MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionFour.AirportsMapper.class);
+            FileOutputFormat.setOutputPath(job, new Path("/home/question4"));
+
+            job.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -34,4 +34,14 @@ public class Utils {
     public static String parseString(String string) {
         return string.trim();
     }
+
+    public static int parseDelay(String string) {
+        try {
+            float delay = Float.parseFloat(string);
+            return delay < 0 ? 0 : (int) delay;
+        }
+        catch (Exception e) {
+            return 0;
+        }
+    }
 }

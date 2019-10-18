@@ -16,9 +16,6 @@ import java.util.Map;
  * been a change over the 21-year period covered by this dataset?
  */
 public class QuestionThree {
-    private static final String MAIN_MAP_ID = "MAIN_MAP_ID";
-    private static final String AIRPORTS_MAP_ID = "AIRPORTS_";
-
     public static class MainMapper extends Mapper<LongWritable, Text, Text, Text> {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -30,7 +27,7 @@ public class QuestionThree {
                 return;
 
             Text iata = new Text(split[MainIndex.ORIGIN].trim());
-            context.write(iata, new Text(MAIN_MAP_ID));
+            context.write(iata, new Text(Constants.MAIN_MAP_ID));
         }
     }
 
@@ -61,7 +58,7 @@ public class QuestionThree {
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             for (Text value : values) {
-                if (value.toString().equals(MAIN_MAP_ID)) {
+                if (value.toString().equals(Constants.MAIN_MAP_ID)) {
                     long count = iataToNumFlights.containsKey(key.toString()) ? iataToNumFlights.get(key.toString()) : 0;
                     iataToNumFlights.put(key.toString(), count + 1);
                 }

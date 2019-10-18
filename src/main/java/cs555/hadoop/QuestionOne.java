@@ -51,24 +51,14 @@ public class QuestionOne {
         }
     }
 
-    private static long parseDelay(String string) {
-        try {
-            float delay = Float.parseFloat(string);
-            return delay < 0 ? 0 : (long) delay;
-        }
-        catch (Exception e) {
-            return 0;
-        }
-    }
-
     private static long sumDelays(String[] split) {
-        return parseDelay(split[MainIndex.ARR_DELAY].trim()) +
-            parseDelay(split[MainIndex.DEP_DELAY].trim()) +
-            parseDelay(split[MainIndex.CARRIER_DELAY].trim()) +
-            parseDelay(split[MainIndex.WEATHER_DELAY].trim()) +
-            parseDelay(split[MainIndex.NAS_DELAY].trim()) +
-            parseDelay(split[MainIndex.SECURITY_DELAY].trim()) +
-            parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim());
+        return Utils.parseDelay(split[MainIndex.ARR_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.DEP_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.CARRIER_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.WEATHER_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.NAS_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.SECURITY_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim());
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {
