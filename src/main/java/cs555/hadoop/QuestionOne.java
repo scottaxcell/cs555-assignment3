@@ -1,17 +1,20 @@
-package cs555.hadoop.one;
+package cs555.hadoop;
 
 import cs555.hadoop.Constants;
 import cs555.hadoop.MainIndex;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * What is the best time-of-the-day/day-of-week/time-of-year to fly to minimize delays?
  */
-public class QuestionOneMapper {
+public class QuestionOne {
     public static class TimeOfDayMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -69,5 +72,43 @@ public class QuestionOneMapper {
             parseDelay(split[MainIndex.NAS_DELAY].trim()) +
             parseDelay(split[MainIndex.SECURITY_DELAY].trim()) +
             parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim());
+    }
+
+    public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {
+        Map<String, Long> timeToDelay;
+
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            super.setup(context);
+            timeToDelay = new HashMap<>();
+        }
+
+        @Override
+        protected void reduce(Text key, Iterable<LongWritable> values, Context context) throws IOException, InterruptedException {
+            long sum = 0;
+            long numValues = 0;
+            for (LongWritable value : values) {
+                sum += value.get();
+                numValues++;
+            }
+            long averageDelay = sum / numValues;
+            timeToDelay.put(String.valueOf(key), averageDelay);
+        }
+
+        @Override
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            timeToDelay.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(e -> {
+                    try {
+                        context.write(new Text(String.valueOf(e.getValue())), new Text(e.getKey()));
+                    }
+                    catch (IOException | InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+
+            super.cleanup(context);
+        }
     }
 }

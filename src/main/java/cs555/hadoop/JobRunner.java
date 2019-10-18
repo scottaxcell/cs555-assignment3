@@ -1,7 +1,5 @@
 package cs555.hadoop;
 
-import cs555.hadoop.one.QuestionOneMapper;
-import cs555.hadoop.one.QuestionOneReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -24,21 +22,21 @@ public class JobRunner {
 
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
-        jobRunner.runQuestionOne();
-//        jobRunner.runQuestionThree();
+//        jobRunner.runQuestionOne();
+        jobRunner.runQuestionThree();
     }
 
     private void runQuestionOne() {
         try {
             Job timeOfDayJob = Job.getInstance(configuration, "Question 1 TOD");
 
-            timeOfDayJob.setJarByClass(QuestionOneMapper.class);
+            timeOfDayJob.setJarByClass(QuestionOne.class);
 
-            timeOfDayJob.setMapperClass(QuestionOneMapper.TimeOfDayMapper.class);
+            timeOfDayJob.setMapperClass(QuestionOne.TimeOfDayMapper.class);
             timeOfDayJob.setMapOutputKeyClass(Text.class);
             timeOfDayJob.setMapOutputValueClass(LongWritable.class);
 
-            timeOfDayJob.setReducerClass(QuestionOneReducer.class);
+            timeOfDayJob.setReducerClass(QuestionOne.Reducer.class);
             timeOfDayJob.setOutputKeyClass(Text.class);
             timeOfDayJob.setOutputValueClass(Text.class);
 
@@ -51,13 +49,13 @@ public class JobRunner {
 
             Job timeOfWeekJob = Job.getInstance(configuration, "Question 1 DOW");
 
-            timeOfWeekJob.setJarByClass(QuestionOneMapper.class);
+            timeOfWeekJob.setJarByClass(QuestionOne.class);
 
-            timeOfWeekJob.setMapperClass(QuestionOneMapper.DayOfWeekMapper.class);
+            timeOfWeekJob.setMapperClass(QuestionOne.DayOfWeekMapper.class);
             timeOfWeekJob.setMapOutputKeyClass(Text.class);
             timeOfWeekJob.setMapOutputValueClass(LongWritable.class);
 
-            timeOfWeekJob.setReducerClass(QuestionOneReducer.class);
+            timeOfWeekJob.setReducerClass(QuestionOne.Reducer.class);
             timeOfWeekJob.setOutputKeyClass(Text.class);
             timeOfWeekJob.setOutputValueClass(Text.class);
 
@@ -70,13 +68,13 @@ public class JobRunner {
 
             Job timeOfYearJob = Job.getInstance(configuration, "Question 1 TOY");
 
-            timeOfYearJob.setJarByClass(QuestionOneMapper.class);
+            timeOfYearJob.setJarByClass(QuestionOne.class);
 
-            timeOfYearJob.setMapperClass(QuestionOneMapper.TimeOfYearMapper.class);
+            timeOfYearJob.setMapperClass(QuestionOne.TimeOfYearMapper.class);
             timeOfYearJob.setMapOutputKeyClass(Text.class);
             timeOfYearJob.setMapOutputValueClass(LongWritable.class);
 
-            timeOfYearJob.setReducerClass(QuestionOneReducer.class);
+            timeOfYearJob.setReducerClass(QuestionOne.Reducer.class);
             timeOfYearJob.setOutputKeyClass(Text.class);
             timeOfYearJob.setOutputValueClass(Text.class);
 
@@ -94,41 +92,43 @@ public class JobRunner {
         try {
             Job job = Job.getInstance(configuration, "Question 3 Part 1");
 
-            job.setJarByClass(Question3.class);
+            job.setJarByClass(QuestionThree.class);
 
-            job.setMapperClass(Question3.MainMap.class);
+            job.setMapperClass(QuestionThree.MainMap.class);
+            job.setMapperClass(QuestionThree.AirportsMap.class);
             job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(IntWritable.class);
+            job.setMapOutputValueClass(Text.class);
 
-            job.setReducerClass(Question3.MainReduce.class);
+            job.setReducerClass(QuestionThree.Reducer.class);
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(Text.class);
 
-            FileInputFormat.addInputPath(job, DATA_MAIN_PATH);
-            FileOutputFormat.setOutputPath(job, new Path("/home/question3part1"));
+            MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionThree.MainMap.class);
+            MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMap.class);
+            FileOutputFormat.setOutputPath(job, new Path("/home/question3p1"));
 
             job.waitForCompletion(false);
 
             // ----------
-
-            Job mapIataToAirportJob = Job.getInstance(configuration, "Question 3 Part 2");
-
-            mapIataToAirportJob.setJarByClass(Question3.class);
-
-            mapIataToAirportJob.setMapperClass(Question3.IntermediateMap.class);
-            mapIataToAirportJob.setMapperClass(Question3.AirportsMap.class);
-            mapIataToAirportJob.setMapOutputKeyClass(Text.class);
-            mapIataToAirportJob.setMapOutputValueClass(Text.class);
-
-            mapIataToAirportJob.setReducerClass(Question3.FinalReduce.class);
-            mapIataToAirportJob.setOutputKeyClass(Text.class);
-            mapIataToAirportJob.setOutputValueClass(Text.class);
-
-            MultipleInputs.addInputPath(mapIataToAirportJob, new Path("/home/question3part1/" + PART_R_00000), TextInputFormat.class, Question3.IntermediateMap.class);
-            MultipleInputs.addInputPath(mapIataToAirportJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, Question3.AirportsMap.class);
-            FileOutputFormat.setOutputPath(mapIataToAirportJob, new Path("/home/question3part2"));
-
-            mapIataToAirportJob.waitForCompletion(false);
+//
+//            Job mapIataToAirportJob = Job.getInstance(configuration, "Question 3 Part 2");
+//
+//            mapIataToAirportJob.setJarByClass(QuestionThree.class);
+//
+//            mapIataToAirportJob.setMapperClass(QuestionThree.IntermediateMap.class);
+//            mapIataToAirportJob.setMapperClass(QuestionThree.AirportsMap.class);
+//            mapIataToAirportJob.setMapOutputKeyClass(Text.class);
+//            mapIataToAirportJob.setMapOutputValueClass(Text.class);
+//
+//            mapIataToAirportJob.setReducerClass(QuestionThree.FinalReduce.class);
+//            mapIataToAirportJob.setOutputKeyClass(Text.class);
+//            mapIataToAirportJob.setOutputValueClass(Text.class);
+//
+//            MultipleInputs.addInputPath(mapIataToAirportJob, new Path("/home/question3part1/" + PART_R_00000), TextInputFormat.class, QuestionThree.IntermediateMap.class);
+//            MultipleInputs.addInputPath(mapIataToAirportJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMap.class);
+//            FileOutputFormat.setOutputPath(mapIataToAirportJob, new Path("/home/question3part2"));
+//
+//            mapIataToAirportJob.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
