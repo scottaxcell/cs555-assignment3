@@ -55,11 +55,11 @@ public class Question3 {
             String[] originAndYear = split[0].split(",");
             if (originAndYear.length != 2)
                 return;
-            cs555.pastry.util.Utils.debug("IntermediateMap: " + value + " : " + split.length);
+            Utils.debug("IntermediateMap: " + value + " : " + split.length);
 
             Text iata = new Text(originAndYear[0]);
             Text yearAndCount = new Text(originAndYear[1] + "," + split[1]);
-            cs555.pastry.util.Utils.debug("Intermediate writing: " + iata + " : " + yearAndCount);
+            Utils.debug("Intermediate writing: " + iata + " : " + yearAndCount);
 
             context.write(iata, yearAndCount);
         }
@@ -71,11 +71,11 @@ public class Question3 {
             String[] split = value.toString().split(",");
             if (split.length != 4)
                 return;
-            cs555.pastry.util.Utils.debug("AirportsMap: " + value + " : " + split.length);
+            Utils.debug("AirportsMap: " + value + " : " + split.length);
 
             Text iata = new Text(split[AirportsIndex.IATA].replace("\"", ""));
             Text airport = new Text(split[AirportsIndex.AIRPORT].replace("\"", ""));
-            cs555.pastry.util.Utils.debug("AirportsMap writing: " + iata + " : " + airport);
+            Utils.debug("AirportsMap writing: " + iata + " : " + airport);
 
             context.write(iata, airport);
         }
@@ -88,11 +88,11 @@ public class Question3 {
             // ORIGIN\tAIRPORT
             String airport = "";
             long count = 0;
-            cs555.pastry.util.Utils.debug("FinalReduce: " + key);
+            Utils.debug("FinalReduce: " + key);
             for (Text value : values) {
-                cs555.pastry.util.Utils.debug(value);
+                Utils.debug(value);
                 String[] yearAndCount = value.toString().split(",");
-                cs555.pastry.util.Utils.debug(value + " : " + yearAndCount.length + " : " + Arrays.toString(yearAndCount));
+                Utils.debug(value + " : " + yearAndCount.length + " : " + Arrays.toString(yearAndCount));
                 if (yearAndCount.length == 2 && isInteger(yearAndCount[1])) {
                     count += Integer.parseInt(yearAndCount[1]);
                 }

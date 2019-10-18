@@ -1,11 +1,12 @@
 package cs555.hadoop;
 
+import cs555.hadoop.one.QuestionOneMapper;
+import cs555.hadoop.one.QuestionOneReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
@@ -23,28 +24,66 @@ public class JobRunner {
 
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
-//        jobRunner.runQuestionOne();
-        jobRunner.runQuestionThree();
+        jobRunner.runQuestionOne();
+//        jobRunner.runQuestionThree();
     }
 
     private void runQuestionOne() {
         try {
-            Job job = Job.getInstance(configuration, "Question 1");
+            Job timeOfDayJob = Job.getInstance(configuration, "Question 1 TOD");
 
-            job.setJarByClass(Question1.class);
+            timeOfDayJob.setJarByClass(QuestionOneMapper.class);
 
-            job.setMapperClass(Question1.Map.class);
-            job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(LongWritable.class);
+            timeOfDayJob.setMapperClass(QuestionOneMapper.TimeOfDayMapper.class);
+            timeOfDayJob.setMapOutputKeyClass(Text.class);
+            timeOfDayJob.setMapOutputValueClass(LongWritable.class);
 
-            job.setReducerClass(Question1.Reduce.class);
-            job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(Text.class);
+            timeOfDayJob.setReducerClass(QuestionOneReducer.class);
+            timeOfDayJob.setOutputKeyClass(Text.class);
+            timeOfDayJob.setOutputValueClass(Text.class);
 
-            FileInputFormat.addInputPath(job, DATA_MAIN_PATH);
-            FileOutputFormat.setOutputPath(job, new Path("/home/question1"));
+            FileInputFormat.addInputPath(timeOfDayJob, DATA_MAIN_PATH);
+            FileOutputFormat.setOutputPath(timeOfDayJob, new Path("/home/question1_tod"));
 
-            job.waitForCompletion(false);
+            timeOfDayJob.waitForCompletion(false);
+
+            // ----------
+
+            Job timeOfWeekJob = Job.getInstance(configuration, "Question 1 DOW");
+
+            timeOfWeekJob.setJarByClass(QuestionOneMapper.class);
+
+            timeOfWeekJob.setMapperClass(QuestionOneMapper.DayOfWeekMapper.class);
+            timeOfWeekJob.setMapOutputKeyClass(Text.class);
+            timeOfWeekJob.setMapOutputValueClass(LongWritable.class);
+
+            timeOfWeekJob.setReducerClass(QuestionOneReducer.class);
+            timeOfWeekJob.setOutputKeyClass(Text.class);
+            timeOfWeekJob.setOutputValueClass(Text.class);
+
+            FileInputFormat.addInputPath(timeOfWeekJob, DATA_MAIN_PATH);
+            FileOutputFormat.setOutputPath(timeOfWeekJob, new Path("/home/question1_dow"));
+
+            timeOfWeekJob.waitForCompletion(false);
+
+            // ----------
+
+            Job timeOfYearJob = Job.getInstance(configuration, "Question 1 TOY");
+
+            timeOfYearJob.setJarByClass(QuestionOneMapper.class);
+
+            timeOfYearJob.setMapperClass(QuestionOneMapper.TimeOfYearMapper.class);
+            timeOfYearJob.setMapOutputKeyClass(Text.class);
+            timeOfYearJob.setMapOutputValueClass(LongWritable.class);
+
+            timeOfYearJob.setReducerClass(QuestionOneReducer.class);
+            timeOfYearJob.setOutputKeyClass(Text.class);
+            timeOfYearJob.setOutputValueClass(Text.class);
+
+            FileInputFormat.addInputPath(timeOfYearJob, DATA_MAIN_PATH);
+            FileOutputFormat.setOutputPath(timeOfYearJob, new Path("/home/question1_toy"));
+
+            timeOfYearJob.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();

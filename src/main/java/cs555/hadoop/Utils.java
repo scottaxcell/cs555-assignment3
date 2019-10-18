@@ -1,4 +1,4 @@
-package cs555.pastry.util;
+package cs555.hadoop;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,5 +29,9 @@ public class Utils {
 
     public static void error(Object o) {
         System.err.println("\nERROR: " + o);
+    }
+
+    public static String parseString(String string) {
+        return string.trim();
     }
 }
