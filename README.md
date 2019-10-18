@@ -6,6 +6,8 @@ Analyzing On-Time Performance Of Commercial Flights In The United States Using M
 
 First time configuration: `$HADOOP_HOME/bin/hdfs namenode -format`
 
+Trust, but verify: `$HADOOP_HOME/bin/hdfs dfsadmin -report`
+
 Web portal: http://tokyo:53501/dfshealth.html#tab-overview
 
 # Yarn
@@ -28,10 +30,10 @@ export HADOOP_CONF_DIR=${HOME}/cs555-assignment3/client-config
 
 # Build
 ```
-$ gradle build
+gradle build
 ```
 
 # Run
 ```
-$ $HADOOP_HOME/bin/hdfs dfs -rm -r /home/question1 && $HADOOP_HOME/bin/hadoop jar build/libs/cs555-assignment3.jar cs555.hadoop.JobRunner
+$HADOOP_HOME/bin/hdfs dfs -rm -r /home/question1 && $HADOOP_HOME/bin/hadoop jar build/libs/cs555-assignment3.jar cs555.hadoop.JobRunner
 ```
