@@ -16,7 +16,7 @@ import java.io.IOException;
 public class JobRunner {
     private static final Path DATA_MAIN_PATH = new Path("/data/main");
     private static final Path DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH = new Path("/data/supplementary/airports.csv");
-    private static final String PART_R_00000 = "/part-r-00000";
+    private static final Path DATA_SUPPLEMENTARY_CARRIERS_CSV_PATH = new Path("/data/supplementary/carriers.csv");
 
     Configuration configuration = new Configuration();
 
@@ -24,7 +24,8 @@ public class JobRunner {
         JobRunner jobRunner = new JobRunner();
 //        jobRunner.runQuestionOne();
 //        jobRunner.runQuestionThree();
-        jobRunner.runQuestionFour();
+//        jobRunner.runQuestionFour();
+        jobRunner.runQuestionFive();
     }
 
     private void runQuestionOne() {
@@ -153,6 +154,32 @@ public class JobRunner {
             MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionFour.MainMapper.class);
             MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionFour.AirportsMapper.class);
             FileOutputFormat.setOutputPath(job, new Path("/home/question4"));
+
+            job.waitForCompletion(false);
+        }
+        catch (IOException | InterruptedException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void runQuestionFive() {
+        try {
+            Job job = Job.getInstance(configuration, "Question 5");
+
+            job.setJarByClass(QuestionFive.class);
+
+            job.setMapperClass(QuestionFive.MainMapper.class);
+            job.setMapperClass(QuestionFive.CarriersMapper.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(Text.class);
+
+            job.setReducerClass(QuestionFive.Reducer.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(Text.class);
+
+            MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionFive.MainMapper.class);
+            MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_CARRIERS_CSV_PATH, TextInputFormat.class, QuestionFive.CarriersMapper.class);
+            FileOutputFormat.setOutputPath(job, new Path("/home/question5"));
 
             job.waitForCompletion(false);
         }

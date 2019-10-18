@@ -45,8 +45,8 @@ public class QuestionThree {
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, Text, Text, Text> {
-        Map<String, Long> iataToNumFlights;
-        Map<String, String> iataToAirport;
+        private Map<String, Long> iataToNumFlights;
+        private Map<String, String> iataToAirport;
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {

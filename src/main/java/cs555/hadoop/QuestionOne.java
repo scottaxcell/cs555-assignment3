@@ -62,7 +62,7 @@ public class QuestionOne {
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {
-        Map<String, Long> timeToDelay;
+        private Map<String, Long> timeToDelay;
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {

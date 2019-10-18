@@ -6,6 +6,8 @@ public class MainIndex {
     public static final int DAY_OF_WEEK = 3;
     public static final int DEP_TIME = 4;
 
+    public static final int UNIQUE_CARRIER = 8;
+
     public static final int ARR_DELAY = 14; // Difference in minutes between scheduled and actual arrival time. Early arrivals show negative numbers.
     public static final int DEP_DELAY = 15; // Difference in minutes between scheduled and actual departure time. Early departures show negative numbers.
     public static final int ORIGIN = 16; // iata
