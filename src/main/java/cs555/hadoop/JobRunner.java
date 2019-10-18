@@ -25,7 +25,8 @@ public class JobRunner {
 //        jobRunner.runQuestionOne();
 //        jobRunner.runQuestionThree();
 //        jobRunner.runQuestionFour();
-        jobRunner.runQuestionFive();
+//        jobRunner.runQuestionFive();
+        jobRunner.runQuestionSix();
     }
 
     private void runQuestionOne() {
@@ -135,7 +136,6 @@ public class JobRunner {
         }
     }
 
-
     private void runQuestionFour() {
         try {
             Job job = Job.getInstance(configuration, "Question 4");
@@ -180,6 +180,32 @@ public class JobRunner {
             MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionFive.MainMapper.class);
             MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_CARRIERS_CSV_PATH, TextInputFormat.class, QuestionFive.CarriersMapper.class);
             FileOutputFormat.setOutputPath(job, new Path("/home/question5"));
+
+            job.waitForCompletion(false);
+        }
+        catch (IOException | InterruptedException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void runQuestionSix() {
+        try {
+            Job job = Job.getInstance(configuration, "Question 6");
+
+            job.setJarByClass(QuestionSix.class);
+
+            job.setMapperClass(QuestionSix.MainMapper.class);
+            job.setMapperClass(QuestionSix.AirportsMapper.class);
+            job.setMapOutputKeyClass(Text.class);
+            job.setMapOutputValueClass(Text.class);
+
+            job.setReducerClass(QuestionSix.Reducer.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(Text.class);
+
+            MultipleInputs.addInputPath(job, DATA_MAIN_PATH, TextInputFormat.class, QuestionSix.MainMapper.class);
+            MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionSix.AirportsMapper.class);
+            FileOutputFormat.setOutputPath(job, new Path("/home/question6"));
 
             job.waitForCompletion(false);
         }

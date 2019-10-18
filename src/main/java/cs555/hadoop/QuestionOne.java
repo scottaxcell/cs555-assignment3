@@ -20,7 +20,7 @@ public class QuestionOne {
                 return;
 
             Text timeOfDay = new Text(split[MainIndex.DEP_TIME].trim());
-            LongWritable delay = new LongWritable(sumDelays(split));
+            LongWritable delay = new LongWritable(Utils.sumDelays(split));
             context.write(timeOfDay, delay);
         }
     }
@@ -33,7 +33,7 @@ public class QuestionOne {
                 return;
 
             Text dayOfWeek = new Text(split[MainIndex.DAY_OF_WEEK].trim());
-            LongWritable delay = new LongWritable(sumDelays(split));
+            LongWritable delay = new LongWritable(Utils.sumDelays(split));
             context.write(dayOfWeek, delay);
         }
     }
@@ -46,19 +46,9 @@ public class QuestionOne {
                 return;
 
             Text month = new Text(split[MainIndex.MONTH].trim());
-            LongWritable delay = new LongWritable(sumDelays(split));
+            LongWritable delay = new LongWritable(Utils.sumDelays(split));
             context.write(month, delay);
         }
-    }
-
-    private static long sumDelays(String[] split) {
-        return Utils.parseDelay(split[MainIndex.ARR_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.DEP_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.CARRIER_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.WEATHER_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.NAS_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.SECURITY_DELAY].trim()) +
-            Utils.parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim());
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {

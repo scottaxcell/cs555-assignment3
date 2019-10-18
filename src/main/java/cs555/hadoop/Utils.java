@@ -44,4 +44,14 @@ public class Utils {
             return 0;
         }
     }
+
+    public static int sumDelays(String[] split) {
+        return Utils.parseDelay(split[MainIndex.ARR_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.DEP_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.CARRIER_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.WEATHER_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.NAS_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.SECURITY_DELAY].trim()) +
+            Utils.parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim());
+    }
 }
