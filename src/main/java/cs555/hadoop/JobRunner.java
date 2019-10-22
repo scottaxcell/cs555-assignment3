@@ -2,7 +2,6 @@ package cs555.hadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -23,10 +22,10 @@ public class JobRunner {
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
 //        jobRunner.runQuestionOne();
-//        jobRunner.runQuestionThree();
+        jobRunner.runQuestionThree();
 //        jobRunner.runQuestionFour();
 //        jobRunner.runQuestionFive();
-        jobRunner.runQuestionSix();
+//        jobRunner.runQuestionSix();
     }
 
     private void runQuestionOne() {
@@ -93,7 +92,7 @@ public class JobRunner {
 
     private void runQuestionThree() {
         try {
-            Job busiestAirportsJob = Job.getInstance(configuration, "Question 3 Part 1");
+            Job busiestAirportsJob = Job.getInstance(configuration, "Question 3");
 
             busiestAirportsJob.setJarByClass(QuestionThree.class);
 
@@ -108,28 +107,9 @@ public class JobRunner {
 
             MultipleInputs.addInputPath(busiestAirportsJob, DATA_MAIN_PATH, TextInputFormat.class, QuestionThree.MainMapper.class);
             MultipleInputs.addInputPath(busiestAirportsJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMapper.class);
-            FileOutputFormat.setOutputPath(busiestAirportsJob, new Path("/home/question3p1"));
+            FileOutputFormat.setOutputPath(busiestAirportsJob, new Path("/home/question3"));
 
             busiestAirportsJob.waitForCompletion(false);
-
-            // ----------
-
-            Job changesPerYearJob = Job.getInstance(configuration, "Question 3 Part 2");
-
-            changesPerYearJob.setJarByClass(QuestionThree.class);
-
-            changesPerYearJob.setMapperClass(QuestionThree.YearMapper.class);
-            changesPerYearJob.setMapOutputKeyClass(IntWritable.class);
-            changesPerYearJob.setMapOutputValueClass(IntWritable.class);
-
-            changesPerYearJob.setReducerClass(QuestionThree.YearReducer.class);
-            changesPerYearJob.setOutputKeyClass(Text.class);
-            changesPerYearJob.setOutputValueClass(Text.class);
-
-            FileInputFormat.addInputPath(changesPerYearJob, DATA_MAIN_PATH);
-            FileOutputFormat.setOutputPath(changesPerYearJob, new Path("/home/question3p2"));
-
-            changesPerYearJob.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();

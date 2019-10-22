@@ -46,7 +46,6 @@ public class QuestionSix {
 
             Text iata = new Text(split[MainIndex.ORIGIN].trim());
             if (Utils.sumDelays(split) > 0) {
-                Utils.debug("main: " + iata + " -- " + Constants.MAIN_MAP_ID);
                 context.write(iata, new Text(Constants.MAIN_MAP_ID));
             }
         }
@@ -61,7 +60,6 @@ public class QuestionSix {
 
             Text iata = new Text(split[AirportsIndex.IATA].replace("\"", "").trim());
             Text state = new Text(split[AirportsIndex.STATE].replace("\"", "").trim());
-            Utils.debug("airports: " + iata + " -- " + state);
             context.write(iata, state);
         }
     }
@@ -80,7 +78,6 @@ public class QuestionSix {
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             for (Text value : values) {
-                Utils.debug("reducer: " + key + " -- " + value);
                 if (value.toString().equals(Constants.MAIN_MAP_ID)) {
                     long count = iataToNumDelays.containsKey(key.toString()) ? iataToNumDelays.get(key.toString()) : 0;
                     iataToNumDelays.put(key.toString(), count + 1);
