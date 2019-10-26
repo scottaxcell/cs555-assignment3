@@ -84,6 +84,10 @@ public class QuestionFive {
 
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
+            context.write(new Text("Carriers with the highest delays"), new Text());
+            context.write(new Text("================================"), new Text());
+            context.write(new Text("Number of delays (total delay in min.)"), new Text("Carrier"));
+
             codeToDelays.entrySet().stream()
                 .sorted((e1, e2) -> e1.getValue().compareTo(e2.getValue()))
                 .map(e -> String.format("%d (%d)\t(%s) %s", e.getValue().count, e.getValue().total, e.getKey(), codeToDescription.get(e.getKey())))
@@ -107,6 +111,8 @@ public class QuestionFive {
                 .map(e -> String.format("%.2f (%s) %s", e.getValue(), e.getKey(), codeToDescription.get(e.getKey())))
                 .ifPresent(s -> {
                     try {
+                        context.write(new Text(), new Text());
+                        context.write(new Text("--------"), new Text());
                         context.write(new Text(), new Text());
                         context.write(new Text("Carrier with highest average delay: " + s), new Text());
                     }

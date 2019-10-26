@@ -12,7 +12,7 @@ import java.util.Map;
  * What are the aspects that you can infer from the LateAircraftDelay field? Develop a program that
  * harnesses this field.
  *
- * What are the best and worst time-of-the-day to travel to avoid late aircraft delays?
+ * Which flights experience the most late aircraft delays? List the top 10 by flight number.
  */
 public class QuestionSeven {
     public static class MainMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
@@ -22,19 +22,19 @@ public class QuestionSeven {
             if (split.length != Constants.MAIN_SPLIT_LENGTH)
                 return;
 
-            Text timeOfDay = new Text(split[MainIndex.DEP_TIME].trim());
+            Text timeOfDay = new Text(split[MainIndex.FLIGHT_NUM].trim());
             LongWritable delay = new LongWritable(Utils.parseDelay(split[MainIndex.LATE_AIRCRAFT_DELAY].trim()));
             context.write(timeOfDay, delay);
         }
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {
-        private Map<String, Long> timeToAvgLateAircraftDelay;
+        private Map<String, Long> flightNumToAvgLateAircraftDelay;
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
             super.setup(context);
-            timeToAvgLateAircraftDelay = new HashMap<>();
+            flightNumToAvgLateAircraftDelay = new HashMap<>();
         }
 
         @Override
@@ -46,12 +46,14 @@ public class QuestionSeven {
                 numValues++;
             }
             long averageDelay = sum / numValues;
-            timeToAvgLateAircraftDelay.put(String.valueOf(key), averageDelay);
+            flightNumToAvgLateAircraftDelay.put(String.valueOf(key), averageDelay);
         }
 
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
-            timeToAvgLateAircraftDelay.entrySet().stream()
+            context.write(new Text("Average late aircraft delay"), new Text("Flight number"));
+
+            flightNumToAvgLateAircraftDelay.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(e -> {
                     try {

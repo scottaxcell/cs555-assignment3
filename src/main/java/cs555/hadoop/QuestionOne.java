@@ -52,12 +52,12 @@ public class QuestionOne {
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, LongWritable, Text, Text> {
-        private Map<String, Long> timeToDelay;
+        private Map<String, Long> timeToAvgDelay;
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
             super.setup(context);
-            timeToDelay = new HashMap<>();
+            timeToAvgDelay = new HashMap<>();
         }
 
         @Override
@@ -69,12 +69,14 @@ public class QuestionOne {
                 numValues++;
             }
             long averageDelay = sum / numValues;
-            timeToDelay.put(String.valueOf(key), averageDelay);
+            timeToAvgDelay.put(String.valueOf(key), averageDelay);
         }
 
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
-            timeToDelay.entrySet().stream()
+            context.write(new Text("Average delay"), new Text("Time"));
+
+            timeToAvgDelay.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(e -> {
                     try {

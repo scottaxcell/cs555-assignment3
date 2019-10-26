@@ -6,6 +6,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Do East or West coast airports have more delays? Include details to substantiate your
@@ -113,6 +114,19 @@ public class QuestionSix {
             context.write(new Text(), new Text());
             context.write(new Text("Number of East coast delays: " + numEastCoastDelays), new Text());
             context.write(new Text("Number of East coast airports: " + eastCoastAirports.size()), new Text());
+
+            context.write(new Text(), new Text());
+            context.write(new Text("--------"), new Text());
+            context.write(new Text(), new Text());
+
+            String westCoastStates = QuestionSix.westCoastStates.stream().
+                map(Object::toString).
+                collect(Collectors.joining(",")).toString();
+            context.write(new Text("West coast states: " + westCoastStates), new Text());
+            String eastCoastStates = QuestionSix.westCoastStates.stream().
+                map(Object::toString).
+                collect(Collectors.joining(",")).toString();
+            context.write(new Text("East coast states: " + eastCoastStates), new Text());
 
             super.cleanup(context);
         }

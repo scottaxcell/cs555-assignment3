@@ -21,7 +21,6 @@ public class QuestionFour {
             Text iata = new Text(split[MainIndex.ORIGIN].trim());
             int delay = Utils.parseDelay(split[MainIndex.WEATHER_DELAY].trim());
             if (delay > 0) {
-                Utils.debug("main: " + iata + " -- " + delay);
                 context.write(iata, new Text(Constants.MAIN_MAP_ID));
             }
         }
@@ -36,7 +35,6 @@ public class QuestionFour {
 
             Text iata = new Text(split[AirportsIndex.IATA].replace("\"", "").trim());
             Text city = new Text(split[AirportsIndex.CITY].replace("\"", "").trim());
-            Utils.debug("airports: " + iata + " -- " + city);
             context.write(iata, city);
         }
     }
@@ -55,7 +53,6 @@ public class QuestionFour {
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             for (Text value : values) {
-                Utils.debug("reducer: " + key + " -- " + value);
                 if (value.toString().equals(Constants.MAIN_MAP_ID)) {
                     long count = iataToNumDelays.containsKey(key.toString()) ? iataToNumDelays.get(key.toString()) : 0;
                     iataToNumDelays.put(key.toString(), count + 1);
@@ -68,8 +65,13 @@ public class QuestionFour {
 
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
+            context.write(new Text("Top 10 cities with most weather delays"), new Text());
+            context.write(new Text("======================================"), new Text());
+            context.write(new Text("Number of delays"), new Text("City"));
+
             iataToNumDelays.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
+                .limit(10)
                 .map(e -> String.format("%d\t(%s) %s", e.getValue(), e.getKey(), iataToCity.get(e.getKey())))
                 .forEach(s -> {
                     try {

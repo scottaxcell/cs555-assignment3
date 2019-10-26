@@ -146,8 +146,9 @@ public class QuestionThree {
         protected void cleanup(Context context) throws IOException, InterruptedException {
             // Part 1
             //-------
-            context.write(new Text("Part 1"), new Text());
-            context.write(new Text("======"), new Text());
+            context.write(new Text("Top 10 busiest airports"), new Text());
+            context.write(new Text("======================="), new Text());
+            context.write(new Text("Number of flights"), new Text("Airport"));
 
             Map<String, Long> iataToTotalNumFlights = new HashMap<>();
 
@@ -175,8 +176,8 @@ public class QuestionThree {
             // Part 2
             //-------
             context.write(new Text(), new Text());
-            context.write(new Text("Part 2"), new Text());
-            context.write(new Text("======"), new Text());
+            context.write(new Text("Top 10 busiest airports by year"), new Text());
+            context.write(new Text("==============================="), new Text());
 
             yearToIataToNumFlights.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
