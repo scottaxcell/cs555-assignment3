@@ -85,7 +85,7 @@ public class QuestionFive {
         @Override
         protected void cleanup(Context context) throws IOException, InterruptedException {
             codeToDelays.entrySet().stream()
-                .sorted((e1, e2) -> e1.getValue().compareTo(e2))
+                .sorted((e1, e2) -> e1.getValue().compareTo(e2.getValue()))
                 .map(e -> String.format("%d (%d)\t(%s) %s", e.getValue().count, e.getValue().total, e.getKey(), codeToDescription.get(e.getKey())))
                 .forEach(s -> {
                     try {

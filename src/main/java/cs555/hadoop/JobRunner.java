@@ -22,10 +22,11 @@ public class JobRunner {
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
 //        jobRunner.runQuestionOne();
-        jobRunner.runQuestionThree();
+//        jobRunner.runQuestionThree();
 //        jobRunner.runQuestionFour();
 //        jobRunner.runQuestionFive();
 //        jobRunner.runQuestionSix();
+        jobRunner.runQuestionSeven();
     }
 
     private void runQuestionOne() {
@@ -188,6 +189,30 @@ public class JobRunner {
             FileOutputFormat.setOutputPath(job, new Path("/home/question6"));
 
             job.waitForCompletion(false);
+        }
+        catch (IOException | InterruptedException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void runQuestionSeven() {
+        try {
+            Job timeOfDayJob = Job.getInstance(configuration, "Question 7");
+
+            timeOfDayJob.setJarByClass(QuestionSeven.class);
+
+            timeOfDayJob.setMapperClass(QuestionSeven.MainMapper.class);
+            timeOfDayJob.setMapOutputKeyClass(Text.class);
+            timeOfDayJob.setMapOutputValueClass(LongWritable.class);
+
+            timeOfDayJob.setReducerClass(QuestionSeven.Reducer.class);
+            timeOfDayJob.setOutputKeyClass(Text.class);
+            timeOfDayJob.setOutputValueClass(Text.class);
+
+            FileInputFormat.addInputPath(timeOfDayJob, DATA_MAIN_PATH);
+            FileOutputFormat.setOutputPath(timeOfDayJob, new Path("/home/question7"));
+
+            timeOfDayJob.waitForCompletion(false);
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
