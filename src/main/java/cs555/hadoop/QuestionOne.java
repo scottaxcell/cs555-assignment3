@@ -19,7 +19,7 @@ public class QuestionOne {
             if (split.length != Constants.MAIN_SPLIT_LENGTH)
                 return;
 
-            Text timeOfDay = new Text(split[MainIndex.DEP_TIME].trim());
+            Text timeOfDay = new Text(split[MainIndex.CRS_DEP_TIME].trim());
             LongWritable delay = new LongWritable(Utils.sumDelays(split));
             context.write(timeOfDay, delay);
         }
@@ -68,7 +68,9 @@ public class QuestionOne {
                 sum += value.get();
                 numValues++;
             }
-            long averageDelay = sum / numValues;
+            long averageDelay = 0;
+            if (sum > 0)
+                averageDelay = sum / numValues;
             timeToAvgDelay.put(String.valueOf(key), averageDelay);
         }
 

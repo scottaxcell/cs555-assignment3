@@ -5,6 +5,7 @@ public class MainIndex {
     public static final int MONTH = 1;
     public static final int DAY_OF_WEEK = 3;
     public static final int DEP_TIME = 4;
+    public static final int CRS_DEP_TIME = 5;
 
     public static final int UNIQUE_CARRIER = 8;
     public static final int FLIGHT_NUM = 9;
