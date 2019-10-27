@@ -21,11 +21,11 @@ public class JobRunner {
 
     public static void main(String[] args) {
         JobRunner jobRunner = new JobRunner();
-//        jobRunner.runQuestionOne();
-//        jobRunner.runQuestionThree();
-//        jobRunner.runQuestionFour();
-//        jobRunner.runQuestionFive();
-//        jobRunner.runQuestionSix();
+        jobRunner.runQuestionOne();
+        jobRunner.runQuestionThree();
+        jobRunner.runQuestionFour();
+        jobRunner.runQuestionFive();
+        jobRunner.runQuestionSix();
         jobRunner.runQuestionSeven();
     }
 
@@ -46,7 +46,7 @@ public class JobRunner {
             FileInputFormat.addInputPath(timeOfDayJob, DATA_MAIN_PATH);
             FileOutputFormat.setOutputPath(timeOfDayJob, new Path("/home/question1_tod"));
 
-            timeOfDayJob.waitForCompletion(false);
+            timeOfDayJob.submit();
 
             // ----------
 
@@ -65,7 +65,7 @@ public class JobRunner {
             FileInputFormat.addInputPath(timeOfWeekJob, DATA_MAIN_PATH);
             FileOutputFormat.setOutputPath(timeOfWeekJob, new Path("/home/question1_dow"));
 
-            timeOfWeekJob.waitForCompletion(false);
+            timeOfWeekJob.submit();
 
             // ----------
 
@@ -84,7 +84,7 @@ public class JobRunner {
             FileInputFormat.addInputPath(timeOfYearJob, DATA_MAIN_PATH);
             FileOutputFormat.setOutputPath(timeOfYearJob, new Path("/home/question1_toy"));
 
-            timeOfYearJob.waitForCompletion(false);
+            timeOfYearJob.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -110,7 +110,7 @@ public class JobRunner {
             MultipleInputs.addInputPath(busiestAirportsJob, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionThree.AirportsMapper.class);
             FileOutputFormat.setOutputPath(busiestAirportsJob, new Path("/home/question3"));
 
-            busiestAirportsJob.waitForCompletion(false);
+            busiestAirportsJob.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -136,7 +136,7 @@ public class JobRunner {
             MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionFour.AirportsMapper.class);
             FileOutputFormat.setOutputPath(job, new Path("/home/question4"));
 
-            job.waitForCompletion(false);
+            job.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -162,7 +162,7 @@ public class JobRunner {
             MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_CARRIERS_CSV_PATH, TextInputFormat.class, QuestionFive.CarriersMapper.class);
             FileOutputFormat.setOutputPath(job, new Path("/home/question5"));
 
-            job.waitForCompletion(false);
+            job.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -188,7 +188,7 @@ public class JobRunner {
             MultipleInputs.addInputPath(job, DATA_SUPPLEMENTARY_AIRPORTS_CSV_PATH, TextInputFormat.class, QuestionSix.AirportsMapper.class);
             FileOutputFormat.setOutputPath(job, new Path("/home/question6"));
 
-            job.waitForCompletion(false);
+            job.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -212,7 +212,7 @@ public class JobRunner {
             FileInputFormat.addInputPath(timeOfDayJob, DATA_MAIN_PATH);
             FileOutputFormat.setOutputPath(timeOfDayJob, new Path("/home/question7"));
 
-            timeOfDayJob.waitForCompletion(false);
+            timeOfDayJob.submit();
         }
         catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -1,0 +1,13 @@
+Top 10 cities with most weather delays	
+======================================	
+Number of delays	City
+67969	(DFW) Dallas/Fort Worth	
+53183	(ATL) Atlanta	
+51506	(ORD) Chicago	
+31289	(IAH) Houston	
+17806	(CVG) Cincinnati	
+17499	(LGA) New York	
+16023	(DTW) Detroit	
+14998	(EWR) Newark	
+13719	(DEN) Denver	
+13333	(BOS) Boston	

@@ -1,0 +1,10 @@
+Number of West coast delays: 9704918	
+Number of West coast airports: 43	
+	
+Number of East coast delays: 20959542	
+Number of East coast airports: 79	
+	
+--------	
+	
+West coast states: WA,OR,CA	
+East coast states: ME,NH,MA,RI,CT,NJ,DE,MD,DC,NY,VA,NC,SC,GA,FL	

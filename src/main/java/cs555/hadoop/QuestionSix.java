@@ -123,7 +123,7 @@ public class QuestionSix {
                 map(Object::toString).
                 collect(Collectors.joining(",")).toString();
             context.write(new Text("West coast states: " + westCoastStates), new Text());
-            String eastCoastStates = QuestionSix.westCoastStates.stream().
+            String eastCoastStates = QuestionSix.eastCoastStates.stream().
                 map(Object::toString).
                 collect(Collectors.joining(",")).toString();
             context.write(new Text("East coast states: " + eastCoastStates), new Text());

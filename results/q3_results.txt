@@ -1,0 +1,302 @@
+Top 10 busiest airports	
+=======================	
+Number of flights	Airport
+6365081	(ORD) Chicago	
+5823489	(ATL) Hartsfield-Jackson Atlanta International	
+5522730	(DFW) Dallas/Fort Worth International	
+3946862	(LAX) Los Angeles International	
+3361051	(PHX) Phoenix Sky Harbor International	
+3156828	(DEN) Denver International	
+2873355	(DTW) Detroit Metro Wayne County	
+2761884	(IAH) George Bush Intercontinental/Houston	
+2670358	(MSP) Minneapolis-St Paul International	
+2667134	(STL) St Louis Lambert International	
+	
+Top 10 busiest airports by year	
+===============================	
+	
+1987	
+----	
+67215	(ORD) Chicago	
+66308	(ATL) Hartsfield-Jackson Atlanta International	
+51859	(DFW) Dallas/Fort Worth International	
+45645	(LAX) Los Angeles International	
+43375	(DEN) Denver International	
+35154	(SFO) San Francisco International	
+32096	(STL) St Louis Lambert International	
+30990	(EWR) Newark Liberty International	
+29847	(PHX) Phoenix Sky Harbor International	
+28764	(PIT) Pittsburgh International	
+	
+1988	
+----	
+271493	(ORD) Chicago	
+259730	(ATL) Hartsfield-Jackson Atlanta International	
+216848	(DFW) Dallas/Fort Worth International	
+169695	(LAX) Los Angeles International	
+161145	(DEN) Denver International	
+131613	(SFO) San Francisco International	
+127428	(STL) St Louis Lambert International	
+125332	(EWR) Newark Liberty International	
+121443	(PHX) Phoenix Sky Harbor International	
+118067	(PIT) Pittsburgh International	
+	
+1989	
+----	
+261258	(ORD) Chicago	
+228359	(DFW) Dallas/Fort Worth International	
+224035	(ATL) Hartsfield-Jackson Atlanta International	
+163486	(LAX) Los Angeles International	
+138406	(DEN) Denver International	
+130179	(PHX) Phoenix Sky Harbor International	
+128096	(STL) St Louis Lambert International	
+126405	(SFO) San Francisco International	
+115872	(DTW) Detroit Metro Wayne County	
+113842	(EWR) Newark Liberty International	
+	
+1990	
+----	
+269396	(ATL) Hartsfield-Jackson Atlanta International	
+269127	(ORD) Chicago	
+237923	(DFW) Dallas/Fort Worth International	
+169846	(LAX) Los Angeles International	
+138557	(PHX) Phoenix Sky Harbor International	
+137178	(DEN) Denver International	
+130341	(SFO) San Francisco International	
+126693	(STL) St Louis Lambert International	
+120330	(DTW) Detroit Metro Wayne County	
+117937	(EWR) Newark Liberty International	
+	
+1991	
+----	
+263144	(ORD) Chicago	
+243220	(DFW) Dallas/Fort Worth International	
+188407	(ATL) Hartsfield-Jackson Atlanta International	
+156946	(LAX) Los Angeles International	
+137342	(PHX) Phoenix Sky Harbor International	
+137301	(DEN) Denver International	
+123998	(SFO) San Francisco International	
+122068	(CLT) Charlotte Douglas International	
+119899	(STL) St Louis Lambert International	
+119648	(DTW) Detroit Metro Wayne County	
+	
+1992	
+----	
+275184	(ORD) Chicago	
+253246	(DFW) Dallas/Fort Worth International	
+203086	(ATL) Hartsfield-Jackson Atlanta International	
+155638	(LAX) Los Angeles International	
+147757	(DEN) Denver International	
+136402	(PHX) Phoenix Sky Harbor International	
+133994	(PIT) Pittsburgh International	
+124264	(DTW) Detroit Metro Wayne County	
+123650	(STL) St Louis Lambert International	
+123342	(CLT) Charlotte Douglas International	
+	
+1993	
+----	
+286054	(ORD) Chicago	
+260474	(DFW) Dallas/Fort Worth International	
+220817	(ATL) Hartsfield-Jackson Atlanta International	
+159038	(DEN) Denver International	
+152352	(LAX) Los Angeles International	
+134171	(PHX) Phoenix Sky Harbor International	
+133010	(STL) St Louis Lambert International	
+127807	(DTW) Detroit Metro Wayne County	
+122739	(PIT) Pittsburgh International	
+120571	(MSP) Minneapolis-St Paul International	
+	
+1994	
+----	
+277740	(ORD) Chicago	
+256273	(DFW) Dallas/Fort Worth International	
+221485	(ATL) Hartsfield-Jackson Atlanta International	
+153493	(LAX) Los Angeles International	
+151608	(STL) St Louis Lambert International	
+141426	(DEN) Denver International	
+139580	(PHX) Phoenix Sky Harbor International	
+136836	(DTW) Detroit Metro Wayne County	
+130976	(PIT) Pittsburgh International	
+129390	(CLT) Charlotte Douglas International	
+	
+1995	
+----	
+293421	(ORD) Chicago	
+268126	(DFW) Dallas/Fort Worth International	
+230469	(ATL) Hartsfield-Jackson Atlanta International	
+179908	(LAX) Los Angeles International	
+174846	(STL) St Louis Lambert International	
+157154	(PHX) Phoenix Sky Harbor International	
+147609	(DTW) Detroit Metro Wayne County	
+136435	(MSP) Minneapolis-St Paul International	
+131416	(CLT) Charlotte Douglas International	
+130326	(DEN) Denver International	
+	
+1996	
+----	
+296233	(ORD) Chicago	
+249350	(DFW) Dallas/Fort Worth International	
+241608	(ATL) Hartsfield-Jackson Atlanta International	
+184107	(LAX) Los Angeles International	
+178506	(STL) St Louis Lambert International	
+163322	(PHX) Phoenix Sky Harbor International	
+154555	(DTW) Detroit Metro Wayne County	
+141923	(MSP) Minneapolis-St Paul International	
+135677	(SFO) San Francisco International	
+131723	(DEN) Denver International	
+	
+1997	
+----	
+297489	(ORD) Chicago	
+251114	(DFW) Dallas/Fort Worth International	
+250221	(ATL) Hartsfield-Jackson Atlanta International	
+188093	(LAX) Los Angeles International	
+177066	(STL) St Louis Lambert International	
+167019	(PHX) Phoenix Sky Harbor International	
+155567	(DTW) Detroit Metro Wayne County	
+138190	(SFO) San Francisco International	
+138086	(MSP) Minneapolis-St Paul International	
+135201	(DEN) Denver International	
+	
+1998	
+----	
+294895	(ORD) Chicago	
+255379	(ATL) Hartsfield-Jackson Atlanta International	
+244012	(DFW) Dallas/Fort Worth International	
+184077	(LAX) Los Angeles International	
+176029	(STL) St Louis Lambert International	
+171000	(PHX) Phoenix Sky Harbor International	
+153412	(DTW) Detroit Metro Wayne County	
+139852	(SFO) San Francisco International	
+136692	(MSP) Minneapolis-St Paul International	
+136348	(DEN) Denver International	
+	
+1999	
+----	
+298250	(ORD) Chicago	
+263864	(ATL) Hartsfield-Jackson Atlanta International	
+245035	(DFW) Dallas/Fort Worth International	
+191761	(LAX) Los Angeles International	
+177700	(PHX) Phoenix Sky Harbor International	
+175707	(STL) St Louis Lambert International	
+154171	(DTW) Detroit Metro Wayne County	
+143418	(MSP) Minneapolis-St Paul International	
+136951	(SFO) San Francisco International	
+135776	(DEN) Denver International	
+	
+2000	
+----	
+296770	(ORD) Chicago	
+265707	(ATL) Hartsfield-Jackson Atlanta International	
+246912	(DFW) Dallas/Fort Worth International	
+212117	(LAX) Los Angeles International	
+188927	(PHX) Phoenix Sky Harbor International	
+169605	(STL) St Louis Lambert International	
+153509	(DTW) Detroit Metro Wayne County	
+147283	(MSP) Minneapolis-St Paul International	
+137762	(LAS) McCarran International	
+137301	(DEN) Denver International	
+	
+2001	
+----	
+341283	(ORD) Chicago	
+312035	(DFW) Dallas/Fort Worth International	
+251670	(ATL) Hartsfield-Jackson Atlanta International	
+224983	(LAX) Los Angeles International	
+184322	(PHX) Phoenix Sky Harbor International	
+162186	(STL) St Louis Lambert International	
+148766	(DTW) Detroit Metro Wayne County	
+142506	(MSP) Minneapolis-St Paul International	
+136106	(LAS) McCarran International	
+133012	(BOS) Logan International	
+	
+2002	
+----	
+327387	(ORD) Chicago	
+281298	(DFW) Dallas/Fort Worth International	
+231927	(ATL) Hartsfield-Jackson Atlanta International	
+182400	(LAX) Los Angeles International	
+173941	(PHX) Phoenix Sky Harbor International	
+141539	(MSP) Minneapolis-St Paul International	
+140680	(DTW) Detroit Metro Wayne County	
+132564	(STL) St Louis Lambert International	
+130593	(LAS) McCarran International	
+120273	(DEN) Denver International	
+	
+2003	
+----	
+368742	(ATL) Hartsfield-Jackson Atlanta International	
+366704	(ORD) Chicago	
+332578	(DFW) Dallas/Fort Worth International	
+223970	(LAX) Los Angeles International	
+185181	(IAH) George Bush Intercontinental/Houston	
+169894	(PHX) Phoenix Sky Harbor International	
+150411	(EWR) Newark Liberty International	
+144835	(MSP) Minneapolis-St Paul International	
+143178	(LAS) McCarran International	
+141823	(DEN) Denver International	
+	
+2004	
+----	
+418071	(ATL) Hartsfield-Jackson Atlanta International	
+376169	(ORD) Chicago	
+344833	(DFW) Dallas/Fort Worth International	
+232620	(LAX) Los Angeles International	
+208010	(CVG) Cincinnati/Northern Kentucky International	
+202029	(IAH) George Bush Intercontinental/Houston	
+170208	(PHX) Phoenix Sky Harbor International	
+158176	(LAS) McCarran International	
+158149	(EWR) Newark Liberty International	
+155204	(DEN) Denver International	
+	
+2005	
+----	
+433677	(ATL) Hartsfield-Jackson Atlanta International	
+337707	(ORD) Chicago	
+307677	(DFW) Dallas/Fort Worth International	
+230863	(LAX) Los Angeles International	
+212012	(IAH) George Bush Intercontinental/Houston	
+208644	(CVG) Cincinnati/Northern Kentucky International	
+182848	(DEN) Denver International	
+174484	(PHX) Phoenix Sky Harbor International	
+167533	(LAS) McCarran International	
+160513	(SLC) Salt Lake City International	
+	
+2006	
+----	
+407970	(ATL) Hartsfield-Jackson Atlanta International	
+373735	(ORD) Chicago	
+301162	(DFW) Dallas/Fort Worth International	
+233787	(LAX) Los Angeles International	
+232475	(DEN) Denver International	
+224060	(IAH) George Bush Intercontinental/Houston	
+215085	(PHX) Phoenix Sky Harbor International	
+184732	(LAS) McCarran International	
+158290	(EWR) Newark Liberty International	
+142079	(SLC) Salt Lake City International	
+	
+2007	
+----	
+413907	(ATL) Hartsfield-Jackson Atlanta International	
+375816	(ORD) Chicago	
+297356	(DFW) Dallas/Fort Worth International	
+240931	(DEN) Denver International	
+237596	(LAX) Los Angeles International	
+211071	(PHX) Phoenix Sky Harbor International	
+200430	(IAH) George Bush Intercontinental/Houston	
+183667	(LAS) McCarran International	
+177505	(DTW) Detroit Metro Wayne County	
+155859	(MSP) Minneapolis-St Paul International	
+	
+2008	
+----	
+137013	(ATL) Hartsfield-Jackson Atlanta International	
+118007	(ORD) Chicago	
+93040	(DFW) Dallas/Fort Worth International	
+78383	(DEN) Denver International	
+73479	(LAX) Los Angeles International	
+69403	(PHX) Phoenix Sky Harbor International	
+62548	(IAH) George Bush Intercontinental/Houston	
+59652	(LAS) McCarran International	
+56179	(DTW) Detroit Metro Wayne County	
+48937	(EWR) Newark Liberty International	

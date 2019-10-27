@@ -4,6 +4,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class QuestionFour {
             context.write(new Text("Number of delays"), new Text("City"));
 
             iataToNumDelays.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(10)
                 .map(e -> String.format("%d\t(%s) %s", e.getValue(), e.getKey(), iataToCity.get(e.getKey())))
                 .forEach(s -> {
